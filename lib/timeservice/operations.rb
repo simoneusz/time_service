@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module TimeService
-  # Operations class
+  # Operations class able to add minutes to a time with /[H]H:MM {AM|PM}/ format
+  # doesent use Time library from ruby kernel
   class Operations < Base
     def add_minutes(formatted_time, minutes)
       time_array = parse_time(formatted_time)

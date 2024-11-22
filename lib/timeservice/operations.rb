@@ -4,7 +4,9 @@ module TimeService
   # Operations class
   class Operations < Base
     def add_minutes(formatted_time, minutes)
-      parse_time(formatted_time)
+      time_array = parse_time(formatted_time)
+      total_minutes = time_array[0] * 60 + time_array[1] + minutes
+      format_time(total_minutes)
     end
 
     def parse_time(formatted_time)
@@ -15,6 +17,18 @@ module TimeService
       period = match[3]
 
       [hours, minutes, period]
+    end
+
+    def format_time(total_minute)
+      hours = total_minute / 60
+      period = hours >= 12 ? 'PM' : 'AM'
+      hours %= 12
+      hours = 12 if hours.zero?
+
+      minutes = total_minute % 60
+      minutes = '00' if minutes.zero?
+
+      "#{hours}: #{minutes} #{period}"
     end
   end
 end

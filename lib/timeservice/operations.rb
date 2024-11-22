@@ -5,14 +5,22 @@ module TimeService
   # doesent use Time library from ruby kernel
   class Operations < Base
     def add_minutes(formatted_time, minutes)
-      time_array = parse_time(formatted_time)
+      match = formatted_time.match(/^(\d{1,2}):(\d{2})\s(AM|PM)$/)
+
+      check_data(match, minutes)
+
+      time_array = parse_time(match)
       total_minutes = time_array[0] * 60 + time_array[1] + minutes
       format_time(total_minutes)
     end
 
-    def parse_time(formatted_time)
-      match = formatted_time.match(/^(\d{1,2}):(\d{2})\s(AM|PM)$/)
+    def check_data(match, minutes)
+      raise Exception("Format doesen't matches") unless match
 
+      raise Exception('Minutes cant be negative') if minutes.negative?
+    end
+
+    def parse_time(match)
       hours = match[1].to_i
       minutes = match[2].to_i
       period = match[3]

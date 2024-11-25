@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative('lib/time_servise')
+require_relative('lib/time_service')
 
 operations = TimeService::Operations.new
 
-initial_time = '9:13 AM'
-minutes_to_add = 167
+initial_time = '9:00 AM'
+minutes_to_add = 60
 
 puts "Time: #{initial_time} + #{minutes_to_add} minutes = "
 p operations.add_minutes(initial_time, minutes_to_add)

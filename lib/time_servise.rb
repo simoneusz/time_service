@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative('timeservice/base')
-require_relative('timeservice/operations')
+require_relative('time_service/base')
+require_relative('time_service/operations')
 
 # TimeService base entery point
 module TimeService

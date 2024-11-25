@@ -11,13 +11,14 @@ module TimeService
 
       time_array = parse_time(match)
       total_minutes = time_array[0] * 60 + time_array[1] + minutes
+
       format_time(total_minutes)
     end
 
     def check_data(match, minutes)
-      raise Exception("Format doesen't matches") unless match
+      raise "Format doesen't matches" unless match
 
-      raise Exception('Minutes cant be negative') if minutes.negative?
+      raise 'Minutes cant be negative' if minutes.negative?
     end
 
     def parse_time(match)
